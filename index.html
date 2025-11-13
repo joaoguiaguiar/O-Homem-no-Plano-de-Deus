@@ -1,94 +1,157 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Apresentação - Elo: O Homem no Plano de Deus</title>
-    <link rel="stylesheet" href="./CSS/reset.css">
-    <link rel="stylesheet" href="./CSS/style.css">
-</head>
 
-<body>
+    <link rel="stylesheet" href="./CSS/reset.css" />
+    <link rel="stylesheet" href="./CSS/style.css" />
+  </head>
+
+  <body>
     <div class="slide-counter">
-        <span id="currentSlide">1</span> / 4
+      <span id="currentSlide">1</span> / 7
     </div>
 
     <div class="slide-container">
-        <!-- Slide 1: Banner -->
-        <div class="slide active" id="slide1">
-            <img src="./IMG/banner.jpg" alt="Banner - Elo: O Homem no Plano de Deus" class="slide-image">
-        </div>
+      <div class="slide active" id="slide1">
+        <img
+          src="./IMG/banner.jpg"
+          alt="Banner - Elo: O Homem no Plano de Deus"
+          class="slide-image"
+        />
+      </div>
 
-        <!-- Slide 2: Vídeo -->
-        <div class="slide slide-video" id="slide2">
-            <div class="video-wrapper">
-                <div id="player"></div>
-            </div>
+      <div class="slide slide-video" id="slide2">
+        <div class="video-wrapper">
+          <div id="player"></div>
         </div>
+      </div>
 
-        <!-- Slide 3: A Criação do Mundo -->
-        <div class="slide" id="slide3">
-            <div class="creation-content">
-                <h1 class="creation-title">A Criação do Mundo</h1>
-                <p class="creation-subtitle">(Gênesis 1-2)</p>
-                
-                <div class="days-grid">
-                    <div class="day-card">
-                        <div class="day-number">1º Dia</div>
-                        <p>Separação da luz das trevas; criação do dia e da noite.</p>
-                    </div>
-                    
-                    <div class="day-card">
-                        <div class="day-number">2º Dia</div>
-                        <p>Separação das águas do céu, criando o firmamento.</p>
-                    </div>
-                    
-                    <div class="day-card">
-                        <div class="day-number">3º Dia</div>
-                        <p>Reunião das águas para formar os mares e a terra seca; criação de plantas, árvores e vegetação.</p>
-                    </div>
-                    
-                    <div class="day-card">
-                        <div class="day-number">4º Dia</div>
-                        <p>Criação do sol, da lua e das estrelas para governar o dia e a noite.</p>
-                    </div>
-                    
-                    <div class="day-card">
-                        <div class="day-number">5º Dia</div>
-                        <p>Criação dos peixes e das aves.</p>
-                    </div>
-                    
-                    <div class="day-card">
-                        <div class="day-number">6º Dia</div>
-                        <p>Criação dos animais terrestres e, por último fez homem à sua imagem e semelhança para reinar sobre os demais seres. <strong>E Deus viu que tudo isto ERA MUITO BOM.</strong></p>
-                    </div>
-                    
-                    <div class="day-card day-rest">
-                        <div class="day-number">7º Dia</div>
-                        <p>Deus descansou.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <div class="slide" id="slide3">
+        <div class="creation-content">
+          <h1 class="creation-title">A Criação do Mundo</h1>
+          <p class="creation-subtitle">(Gênesis 1-2)</p>
 
-        <!-- Slide 4: Versículo -->
-        <div class="slide" id="slide4">
-            <div class="verse-content">
-                <div class="verse-box">
-                    <p class="verse-text">"O mundo era vazio e sem forma."</p>
-                    <p class="verse-reference">Gênesis 1:2</p>
-                </div>
+          <div class="days-container">
+            <div class="day-item" data-day="1">
+              <div class="day-number">1º Dia</div>
+              <p>"Separação da luz das trevas; criação do dia e da noite."</p>
             </div>
+
+            <div class="day-item" data-day="2">
+              <div class="day-number">2º Dia</div>
+              <p>"Separação das águas do céu, criando o firmamento."</p>
+            </div>
+
+            <div class="day-item" data-day="3">
+              <div class="day-number">3º Dia</div>
+              <p>
+                "Reunião das águas para formar os mares e a terra seca; criação
+                de plantas, árvores e vegetação."
+              </p>
+            </div>
+
+            <div class="day-item" data-day="4">
+              <div class="day-number">4º Dia</div>
+              <p>
+                "Criação do sol, da lua e das estrelas para governar o dia e a
+                noite."
+              </p>
+            </div>
+
+            <div class="day-item" data-day="5">
+              <div class="day-number">5º Dia</div>
+              <p>"Criação dos peixes e das aves."</p>
+            </div>
+
+            <div class="day-item" data-day="6">
+              <div class="day-number">6º Dia</div>
+              <p>
+                "Criação dos animais terrestres e, por último, fez o homem à sua
+                imagem e semelhança para reinar sobre os demais seres.
+                <strong>E Deus viu que tudo isto ERA MUITO BOM.</strong>"
+              </p>
+            </div>
+
+            <div class="day-item day-rest" data-day="7">
+              <div class="day-number">7º Dia</div>
+              <p>"Deus descansou."</p>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <div class="slide" id="slide4">
+        <div class="verse-content">
+          <div class="verse-box">
+            <p class="verse-text">"O mundo era vazio e sem forma."</p>
+            <p class="verse-reference">Gênesis 1:2</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide" id="slide5">
+        <div class="verse-content">
+          <div class="verse-box">
+            <p class="verse-text">"O mundo era vazio e sem forma."</p>
+            <p class="verse-reference">Gênesis 1:2</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 6: Quem é DEUS? -->
+      <div class="slide" id="slide6">
+        <div class="god-content">
+          <div class="god-box">
+            <h1 class="god-title">Quem é DEUS?</h1>
+            <div class="god-verse">
+              <p class="god-text">"ELE É O SENHOR, O ADMINISTRADOR DE TODOS OS BENS"</p>
+              <p class="god-reference">(SL 104, 21)</p>
+            </div>
+            <div class="catechism-box">
+              <p class="catechism-text">O Catecismo da Igreja Católica (CIC), parágrafo 51 a 53, cita:</p>
+              <p class="catechism-content">Deus é o Ser supremo, único e eterno, criador de todas as coisas visíveis e invisíveis. DEUS É AMOR!</p>
+            </div>
+            <div class="god-verse final-verse">
+              <p class="god-text">"EU SOU JAVÉ, E NÃO EXISTE OUTRO, FORA DE MIM. NÃO EXISTE DEUSES ALGUM."</p>
+              <p class="god-reference">(Isaías 45, 5)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 7: Por que DEUS criou o mundo? -->
+      <div class="slide" id="slide7">
+        <div class="creation-purpose-content">
+          <div class="creation-purpose-box">
+            <h1 class="creation-purpose-title">Por que DEUS criou o mundo?</h1>
+            <div class="purpose-verse">
+              <p class="purpose-text">"Deus preordenou a criação para nos levar a Sua Glória e conhecer a sua sabedoria"</p>
+              <p class="purpose-reference">(1° Coríntios 2, 7)</p>
+            </div>
+            <div class="purpose-explanation">
+              <p>Ele quis, que participássemos do Seu Ser de Sabedoria e Bondade, no PLANO da criação.</p>
+            </div>
+            <div class="purpose-verse final-purpose-verse">
+              <p class="purpose-text">"POIS TUDO CRIASTE TODAS AS COISAS, POR TUA VONTADE, É QUE ELAS EXISTEM E FORAM CRIADAS."</p>
+              <p class="purpose-reference">(Apocalipse 4,11)</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="controls">
-        <button class="btn" id="prevBtn" onclick="mudarSlide(-1)">← Anterior</button>
-        <button class="btn" id="nextBtn" onclick="mudarSlide(1)">Próximo →</button>
+      <button class="btn" id="prevBtn" onclick="mudarSlide(-1)">
+        ← Anterior
+      </button>
+      <button class="btn" id="nextBtn" onclick="mudarSlide(1)">
+        Próximo →
+      </button>
     </div>
 
     <script src="./JS/script.js"></script>
-</body>
-
+  </body>
 </html>

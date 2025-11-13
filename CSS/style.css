@@ -52,13 +52,13 @@ body {
 }
 
 .slide h1 {
-    font-size: 3.5rem;
+    font-size: 4.5rem;
     font-weight: 300;
     color: #FFFFFF;
     text-align: center;
     padding: 0 5%;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-    letter-spacing: 1px;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
 }
 
 .slide-video {
@@ -75,103 +75,81 @@ body {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
-/* ===== SLIDE 3: CRIAÇÃO ===== */
+/* ===== SLIDE 3: CRIAÇÃO COM ANIMAÇÃO SEQUENCIAL ===== */
 .creation-content {
     width: 95%;
-    max-width: 1400px;
-    padding: 30px;
+    max-width: 1000px;
+    padding: 40px;
     overflow-y: auto;
     max-height: 90vh;
+    scroll-behavior: smooth;
 }
 
 .creation-title {
-    font-size: 3rem;
+    font-size: 4rem;
     font-weight: 700;
     color: #FFFFFF;
     text-align: center;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    margin-bottom: 15px;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
 }
 
 .creation-subtitle {
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: #D4E4BC;
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
     font-style: italic;
 }
 
-.days-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    animation: fadeInUp 1s ease-out;
+.days-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding-bottom: 20px;
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.day-card {
+.day-item {
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    border: 3px solid rgba(255, 255, 255, 0.3);
     border-radius: 15px;
-    padding: 25px;
-    transition: all 0.3s ease;
-    animation: slideIn 0.6s ease-out backwards;
+    padding: 30px 35px;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.day-card:nth-child(1) { animation-delay: 0.1s; }
-.day-card:nth-child(2) { animation-delay: 0.2s; }
-.day-card:nth-child(3) { animation-delay: 0.3s; }
-.day-card:nth-child(4) { animation-delay: 0.4s; }
-.day-card:nth-child(5) { animation-delay: 0.5s; }
-.day-card:nth-child(6) { animation-delay: 0.6s; }
-.day-card:nth-child(7) { animation-delay: 0.7s; }
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+.day-item.show {
+    opacity: 1;
+    transform: translateX(0);
 }
 
-.day-card:hover {
-    transform: translateY(-5px);
+.day-item:hover {
+    transform: translateX(5px) scale(1.02);
     background: rgba(255, 255, 255, 0.25);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .day-number {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
     font-weight: 700;
     color: #FFF8DC;
     margin-bottom: 15px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
 }
 
-.day-card p {
-    font-size: 1.3rem;
-    line-height: 1.6;
+.day-item p {
+    font-size: 1.5rem;
+    line-height: 1.7;
     color: #FFFFFF;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
 
-.day-card strong {
+.day-item strong {
     color: #FFD700;
     font-weight: 700;
+    font-size: 1.6rem;
 }
 
 .day-rest {
@@ -183,8 +161,8 @@ body {
     color: #FFD700;
 }
 
-/* ===== SLIDE 4: VERSÍCULO ===== */
-.verse-content {
+/* ===== SLIDE 4: VERSÍCULO ELEGANTE COM IMAGEM ===== */
+#slide4 .verse-content {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -193,14 +171,54 @@ body {
     padding: 40px;
 }
 
-.verse-box {
-    max-width: 900px;
+#slide4 .verse-box {
+    max-width: 1100px;
     text-align: center;
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(15px);
-    padding: 60px 80px;
+    padding: 80px 100px;
     border-radius: 20px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+    animation: verseAppear 1.5s ease-out;
+}
+
+#slide4 .verse-text {
+    font-size: 4rem;
+    font-weight: 300;
+    color: #FFFFFF;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.8);
+    font-style: italic;
+    animation: textGlow 3s ease-in-out infinite;
+}
+
+#slide4 .verse-reference {
+    font-size: 2.5rem;
+    color: #FFD700;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+}
+/* ===== SLIDE 5: VERSÍCULO ===== */
+#slide5 .verse-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 40px;
+}
+
+#slide5 .verse-box {
+    max-width: 1100px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(15px);
+    padding: 80px 100px;
+    border-radius: 20px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
     animation: verseAppear 1.5s ease-out;
 }
@@ -219,33 +237,33 @@ body {
     }
 }
 
-.verse-text {
-    font-size: 3rem;
+#slide5 .verse-text {
+    font-size: 4rem;
     font-weight: 300;
     color: #FFFFFF;
-    line-height: 1.5;
-    margin-bottom: 30px;
-    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+    line-height: 1.6;
+    margin-bottom: 40px;
+    text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.8);
     font-style: italic;
     animation: textGlow 3s ease-in-out infinite;
 }
 
 @keyframes textGlow {
     0%, 100% {
-        text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+        text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.8);
     }
     50% {
-        text-shadow: 3px 3px 20px rgba(255, 255, 255, 0.3),
-                     3px 3px 10px rgba(0, 0, 0, 0.7);
+        text-shadow: 4px 4px 25px rgba(255, 255, 255, 0.4),
+                     4px 4px 12px rgba(0, 0, 0, 0.8);
     }
 }
 
-.verse-reference {
-    font-size: 1.8rem;
+#slide5 .verse-reference {
+    font-size: 2.5rem;
     color: #FFD700;
     font-weight: 600;
-    letter-spacing: 2px;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    letter-spacing: 3px;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
 }
 
 /* ===== CONTROLES ===== */
@@ -263,8 +281,8 @@ body {
     background: rgba(255, 255, 255, 0.9);
     border: 2px solid #FFFFFF;
     color: #4D6938;
-    padding: 12px 30px;
-    font-size: 16px;
+    padding: 15px 40px;
+    font-size: 1.3rem;
     border-radius: 25px;
     cursor: pointer;
     font-weight: 600;
@@ -289,9 +307,10 @@ body {
     top: 20px;
     right: 30px;
     background: rgba(255, 255, 255, 0.9);
-    padding: 10px 20px;
+    padding: 15px 30px;
     border-radius: 20px;
     color: #4D6938;
+    font-size: 1.5rem;
     font-weight: 600;
     backdrop-filter: blur(10px);
     z-index: 100;
@@ -300,7 +319,7 @@ body {
 /* ===== RESPONSIVO ===== */
 @media (max-width: 768px) {
     .slide h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
 
     .video-wrapper {
@@ -312,8 +331,8 @@ body {
     }
 
     .btn {
-        padding: 10px 20px;
-        font-size: 14px;
+        padding: 12px 25px;
+        font-size: 1rem;
     }
     
     .slide-image {
@@ -322,35 +341,292 @@ body {
     }
 
     .creation-title {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
 
     .creation-subtitle {
-        font-size: 1.2rem;
-    }
-
-    .days-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-
-    .day-number {
         font-size: 1.5rem;
     }
 
-    .day-card p {
-        font-size: 1rem;
+    .day-item {
+        padding: 20px;
+        margin-bottom: 15px;
     }
 
-    .verse-box {
-        padding: 40px 30px;
-    }
-
-    .verse-text {
+    .day-number {
         font-size: 2rem;
     }
 
-    .verse-reference {
+    .day-item p {
+        font-size: 1.2rem;
+    }
+
+    /* Slide 4 responsivo */
+    #slide4 .verse-box {
+        padding: 50px 30px;
+        margin: 20px;
+    }
+    
+    #slide4 .verse-text {
+        font-size: 2.2rem;
+    }
+    
+    #slide4 .verse-text::before {
+        left: -20px;
+    }
+    
+    #slide4 .verse-text::after {
+        right: -20px;
+    }
+    
+    #slide4 .verse-reference {
+        font-size: 1.5rem;
+        padding: 8px 20px;
+    }
+
+    /* Slide 5 responsivo */
+    #slide5 .verse-box {
+        padding: 50px 40px;
+    }
+
+    #slide5 .verse-text {
+        font-size: 2.5rem;
+    }
+
+    #slide5 .verse-reference {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #slide4 .verse-box {
+        padding: 40px 20px;
+    }
+    
+    #slide4 .verse-text {
+        font-size: 1.8rem;
+    }
+    
+    #slide4 .verse-text::before {
+        left: -10px;
+        top: -15px;
+        font-size: 3rem;
+    }
+    
+    #slide4 .verse-text::after {
+        right: -10px;
+        bottom: -30px;
+        font-size: 3rem;
+    }
+    
+    #slide4 .verse-reference {
         font-size: 1.3rem;
+        padding: 6px 15px;
+    }
+}
+
+
+/* ===== SLIDE 6: QUEM É DEUS? ===== */
+#slide6 .god-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 40px;
+}
+
+#slide6 .god-box {
+    max-width: 1100px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(15px);
+    padding: 60px 80px;
+    border-radius: 20px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+    animation: verseAppear 1.5s ease-out;
+}
+
+#slide6 .god-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #FFD700;
+    margin-bottom: 40px;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+}
+
+#slide6 .god-verse {
+    margin-bottom: 30px;
+}
+
+#slide6 .god-text {
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: #FFFFFF;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8);
+    font-style: italic;
+}
+
+#slide6 .god-reference {
+    font-size: 1.8rem;
+    color: #FFD700;
+    font-weight: 600;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+#slide6 .catechism-box {
+    background: rgba(255, 215, 0, 0.1);
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 30px 0;
+}
+
+#slide6 .catechism-text {
+    font-size: 1.6rem;
+    color: #D4E4BC;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+#slide6 .catechism-content {
+    font-size: 1.8rem;
+    color: #FFFFFF;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+#slide6 .final-verse {
+    margin-top: 30px;
+}
+
+/* ===== SLIDE 7: POR QUE DEUS CRIOU O MUNDO? ===== */
+#slide7 .creation-purpose-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 40px;
+}
+
+#slide7 .creation-purpose-box {
+    max-width: 1100px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(15px);
+    padding: 60px 80px;
+    border-radius: 20px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+    animation: verseAppear 1.5s ease-out;
+}
+
+#slide7 .creation-purpose-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #FFD700;
+    margin-bottom: 40px;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+}
+
+#slide7 .purpose-verse {
+    margin-bottom: 25px;
+}
+
+#slide7 .purpose-text {
+    font-size: 2rem;
+    font-weight: 400;
+    color: #FFFFFF;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8);
+    font-style: italic;
+}
+
+#slide7 .purpose-reference {
+    font-size: 1.6rem;
+    color: #FFD700;
+    font-weight: 600;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+#slide7 .purpose-explanation {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 25px 0;
+}
+
+#slide7 .purpose-explanation p {
+    font-size: 1.8rem;
+    color: #FFFFFF;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+#slide7 .final-purpose-verse {
+    margin-top: 25px;
+}
+
+/* ===== RESPONSIVO PARA OS NOVOS SLIDES ===== */
+@media (max-width: 768px) {
+    #slide6 .god-box,
+    #slide7 .creation-purpose-box {
+        padding: 40px 30px;
+        margin: 20px;
+    }
+    
+    #slide6 .god-title,
+    #slide7 .creation-purpose-title {
+        font-size: 2.5rem;
+    }
+    
+    #slide6 .god-text,
+    #slide7 .purpose-text {
+        font-size: 1.6rem;
+    }
+    
+    #slide6 .catechism-text {
+        font-size: 1.3rem;
+    }
+    
+    #slide6 .catechism-content {
+        font-size: 1.4rem;
+    }
+    
+    #slide7 .purpose-explanation p {
+        font-size: 1.4rem;
+    }
+    
+    #slide6 .god-reference,
+    #slide7 .purpose-reference {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #slide6 .god-box,
+    #slide7 .creation-purpose-box {
+        padding: 30px 20px;
+    }
+    
+    #slide6 .god-title,
+    #slide7 .creation-purpose-title {
+        font-size: 2rem;
+    }
+    
+    #slide6 .god-text,
+    #slide7 .purpose-text {
+        font-size: 1.3rem;
+    }
+    
+    #slide6 .catechism-box,
+    #slide7 .purpose-explanation {
+        padding: 15px;
     }
 }

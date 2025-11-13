@@ -1,9 +1,13 @@
 // Configurações iniciais 
 let slideAtual = 1;
-const totalDeSlides = 4; // Atualizado para 4 slides
+// TOTAL DE SLIDES AJUSTADO PARA 7
+const totalDeSlides = 7; 
 let videoPlayer;
 let verificadorTempo;
 let videoJaPosicionado = false;
+let animacaoDiasAtiva = false;
+
+// ... o resto do código permanece igual
 
 // Carrega a API do YouTube 
 const scriptYoutube = document.createElement('script');
@@ -33,7 +37,7 @@ function onYouTubeIframeAPIReady() {
 // Função executada quando o player estiver totalmente carregado
 function aoVideoFicarPronto(evento) {
     console.log('Player pronto');
-    // Carrega o vídeo e posiciona em 8.5 segundos
+    // Pre-carrega o vídeo com o tempo de início
     videoPlayer.cueVideoById({
         videoId: 'X3n4xRHQBuw',
         startSeconds: 8.5
@@ -45,16 +49,14 @@ function aoVideoFicarPronto(evento) {
 function aoMudarEstadoDoVideo(evento) {
     console.log('Estado do vídeo:', evento.data);
     
-    // Quando o vídeo começar a tocar
+    // Inicia o verificador de tempo ao começar a tocar
     if (evento.data === YT.PlayerState.PLAYING) {
-        // Inicia verificador para pausar em 198s
         clearInterval(verificadorTempo);
         verificadorTempo = setInterval(() => {
             if (videoPlayer && videoPlayer.getCurrentTime) {
                 const tempo = videoPlayer.getCurrentTime();
-
-                // Pausar exatamente em 3:20 (200 segundos)
-                if (tempo >= 200) {
+                // Pausa o vídeo ao atingir 200 segundos (ajuste se necessário)
+                if (tempo >= 200) { 
                     videoPlayer.pauseVideo();
                     clearInterval(verificadorTempo);
                 }
@@ -62,10 +64,50 @@ function aoMudarEstadoDoVideo(evento) {
         }, 100);
     }
 
-    // Limpa o intervalo se o vídeo pausar ou terminar
+    // Limpa o verificador se o vídeo pausar ou terminar
     if (evento.data === YT.PlayerState.PAUSED || evento.data === YT.PlayerState.ENDED) {
         clearInterval(verificadorTempo);
     }
+}
+
+// FUNÇÃO: Faz scroll automático para o último dia visível
+function fazerScrollParaDiaAtual() {
+    const diasVisiveis = document.querySelectorAll('.day-item.show');
+    if (diasVisiveis.length > 0) {
+        const ultimoDiaVisivel = diasVisiveis[diasVisiveis.length - 1];
+        ultimoDiaVisivel.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center' 
+        });
+    }
+}
+
+// FUNÇÃO: Anima os 7 dias sequencialmente COM SCROLL
+function animarDiasDaCriacao() {
+    if (animacaoDiasAtiva) return;
+    animacaoDiasAtiva = true;
+
+    const diasItems = document.querySelectorAll('.day-item');
+    
+    // Esconde todos antes de começar
+    diasItems.forEach(item => item.classList.remove('show'));
+    
+    diasItems.forEach((item, index) => {
+        setTimeout(() => {
+            item.classList.add('show');
+            // Faz scroll automático após cada dia aparecer
+            setTimeout(() => {
+                fazerScrollParaDiaAtual();
+            }, 300);
+        }, index * 600); // 600ms de intervalo entre a aparição de cada dia
+    });
+}
+
+// FUNÇÃO: Reseta a animação dos dias
+function resetarAnimacaoDias() {
+    animacaoDiasAtiva = false;
+    const diasItems = document.querySelectorAll('.day-item');
+    diasItems.forEach(item => item.classList.remove('show'));
 }
 
 // --- Mostra o slide atual ---
@@ -75,16 +117,28 @@ function mostrarSlide(numero) {
     const botaoProximo = document.getElementById('nextBtn');
     const contador = document.getElementById('currentSlide');
 
+    // Garante que o número do slide está dentro do limite
     if (numero > totalDeSlides) slideAtual = totalDeSlides;
     if (numero < 1) slideAtual = 1;
 
+    // Remove 'active' de todos e adiciona ao slide atual
     slides.forEach(slide => slide.classList.remove('active'));
     slides[slideAtual - 1].classList.add('active');
+
+    // Scroll para o topo quando entrar no slide 3 (A Criação)
+    if (slideAtual === 3) {
+        setTimeout(() => {
+            const creationContent = document.querySelector('.creation-content');
+            if (creationContent) {
+                creationContent.scrollTop = 0;
+            }
+        }, 100);
+    }
 
     // Gerenciar vídeo ao entrar/sair do slide 2
     if (videoPlayer && typeof videoPlayer.pauseVideo === 'function') {
         if (slideAtual === 2) {
-            // Ao entrar no slide do vídeo
+            // Posiciona e prepara o vídeo
             if (videoJaPosicionado && typeof videoPlayer.cueVideoById === 'function') {
                 videoPlayer.cueVideoById({
                     videoId: 'X3n4xRHQBuw',
@@ -92,26 +146,41 @@ function mostrarSlide(numero) {
                 });
             }
         } else {
-            // Ao sair do slide do vídeo, pausa
+            // Pausa o vídeo e limpa o verificador em outros slides
             videoPlayer.pauseVideo();
             clearInterval(verificadorTempo);
         }
     }
 
+    // Inicia animação dos dias quando entrar no slide 3
+    if (slideAtual === 3) {
+        setTimeout(() => {
+            animarDiasDaCriacao();
+        }, 300);
+    } else {
+        // Reseta a animação ao sair
+        resetarAnimacaoDias();
+    }
+
+    // Gerencia o estado dos botões de navegação
     botaoAnterior.disabled = slideAtual === 1;
     botaoProximo.disabled = slideAtual === totalDeSlides;
 
+    // Atualiza o contador na tela
     contador.textContent = slideAtual;
 }
 
+// FUNÇÃO: Muda o slide na direção especificada (+1 ou -1)
 function mudarSlide(direcao) {
     slideAtual += direcao;
     mostrarSlide(slideAtual);
 }
 
+// Adiciona navegação por setas do teclado
 document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight') mudarSlide(1);
     if (e.key === 'ArrowLeft') mudarSlide(-1);
 });
 
+// Inicializa o slider
 mostrarSlide(slideAtual);
