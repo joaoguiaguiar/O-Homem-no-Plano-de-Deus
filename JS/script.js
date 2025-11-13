@@ -1,84 +1,117 @@
-let currentSlide = 1;
-const totalSlides = 3;
-let player;
-let checkInterval;
+//  Configurações iniciais 
+let slideAtual = 1;
+const totalDeSlides = 3;
+let videoPlayer;
+let verificadorTempo;
+let videoJaPosicionado = false;
 
-// Carregar API do YouTube
-const tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
-const firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+//  Carrega a API do YouTube 
+const scriptYoutube = document.createElement('script');
+scriptYoutube.src = "https://www.youtube.com/iframe_api";
+const primeiroScript = document.getElementsByTagName('script')[0];
+primeiroScript.parentNode.insertBefore(scriptYoutube, primeiroScript);
 
-// Função chamada automaticamente quando a API estiver pronta
+// Função chamada automaticamente quando a API estiver pronta 
 function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
+    videoPlayer = new YT.Player('player', {
         height: '100%',
         width: '100%',
         videoId: 'X3n4xRHQBuw',
         playerVars: {
-            'start': 8,
-            'rel': 0,
-            'modestbranding': 1
+            rel: 0,
+            modestbranding: 1,
+            enablejsapi: 1,
+            autoplay: 0
         },
         events: {
-            'onStateChange': onPlayerStateChange
+            onReady: aoVideoFicarPronto,
+            onStateChange: aoMudarEstadoDoVideo
         }
     });
 }
 
-function onPlayerStateChange(event) {
+// Função executada quando o player estiver totalmente carregado
+function aoVideoFicarPronto(evento) {
+    console.log('Player pronto');
+    // Carrega o vídeo e posiciona em 8.5 segundos
+    videoPlayer.cueVideoById({
+        videoId: 'X3n4xRHQBuw',
+        startSeconds: 8.5
+    });
+    videoJaPosicionado = true;
+}
+
+// Controla o estado do vídeo 
+function aoMudarEstadoDoVideo(evento) {
+    console.log('Estado do vídeo:', evento.data);
+    
     // Quando o vídeo começar a tocar
-    if (event.data == YT.PlayerState.PLAYING) {
-        // Verificar a cada 500ms se chegou aos 198 segundos
-        checkInterval = setInterval(() => {
-            if (player && player.getCurrentTime) {
-                const currentTime = player.getCurrentTime();
-                if (currentTime >= 198) {
-                    player.pauseVideo();
-                    clearInterval(checkInterval);
+    if (evento.data === YT.PlayerState.PLAYING) {
+        // Inicia verificador para pausar em 198s
+        clearInterval(verificadorTempo);
+        verificadorTempo = setInterval(() => {
+            if (videoPlayer && videoPlayer.getCurrentTime) {
+                const tempo = videoPlayer.getCurrentTime();
+
+                // Pausar exatamente em 3:20 (200 segundos)
+                if (tempo >= 200) {
+                    videoPlayer.pauseVideo();
+                    clearInterval(verificadorTempo);
                 }
             }
-        }, 500);
+        }, 100);
     }
 
-    // Limpar intervalo quando pausar/parar
-    if (event.data == YT.PlayerState.PAUSED || event.data == YT.PlayerState.ENDED) {
-        clearInterval(checkInterval);
+    // Limpa o intervalo se o vídeo pausar ou terminar
+    if (evento.data === YT.PlayerState.PAUSED || evento.data === YT.PlayerState.ENDED) {
+        clearInterval(verificadorTempo);
     }
 }
 
-function showSlide(n) {
+// --- Mostra o slide atual ---
+function mostrarSlide(numero) {
     const slides = document.querySelectorAll('.slide');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const counter = document.getElementById('currentSlide');
+    const botaoAnterior = document.getElementById('prevBtn');
+    const botaoProximo = document.getElementById('nextBtn');
+    const contador = document.getElementById('currentSlide');
 
-    if (n > totalSlides) currentSlide = totalSlides;
-    if (n < 1) currentSlide = 1;
+    if (numero > totalDeSlides) slideAtual = totalDeSlides;
+    if (numero < 1) slideAtual = 1;
 
     slides.forEach(slide => slide.classList.remove('active'));
-    slides[currentSlide - 1].classList.add('active');
+    slides[slideAtual - 1].classList.add('active');
 
-    // Pausar vídeo ao sair do slide
-    if (player && player.pauseVideo && currentSlide !== 3) {
-        player.pauseVideo();
-        clearInterval(checkInterval);
+    // Gerenciar vídeo ao entrar/sair do slide 3
+    if (videoPlayer && typeof videoPlayer.pauseVideo === 'function') {
+        if (slideAtual === 3) {
+            // Ao entrar no slide do vídeo
+            if (videoJaPosicionado && typeof videoPlayer.cueVideoById === 'function') {
+                videoPlayer.cueVideoById({
+                    videoId: 'X3n4xRHQBuw',
+                    startSeconds: 8.5
+                });
+            }
+        } else {
+            // Ao sair do slide do vídeo, pausa
+            videoPlayer.pauseVideo();
+            clearInterval(verificadorTempo);
+        }
     }
 
-    prevBtn.disabled = currentSlide === 1;
-    nextBtn.disabled = currentSlide === totalSlides;
+    botaoAnterior.disabled = slideAtual === 1;
+    botaoProximo.disabled = slideAtual === totalDeSlides;
 
-    counter.textContent = currentSlide;
+    contador.textContent = slideAtual;
 }
 
-function changeSlide(direction) {
-    currentSlide += direction;
-    showSlide(currentSlide);
+function mudarSlide(direcao) {
+    slideAtual += direcao;
+    mostrarSlide(slideAtual);
 }
 
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') changeSlide(1);
-    if (e.key === 'ArrowLeft') changeSlide(-1);
+    if (e.key === 'ArrowRight') mudarSlide(1);
+    if (e.key === 'ArrowLeft') mudarSlide(-1);
 });
 
-showSlide(currentSlide);
+mostrarSlide(slideAtual);
