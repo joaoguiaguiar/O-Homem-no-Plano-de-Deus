@@ -1,11 +1,11 @@
-//  Configurações iniciais 
+// Configurações iniciais 
 let slideAtual = 1;
-const totalDeSlides = 2; // Alterado de 3 para 2
+const totalDeSlides = 4; // Atualizado para 4 slides
 let videoPlayer;
 let verificadorTempo;
 let videoJaPosicionado = false;
 
-//  Carrega a API do YouTube 
+// Carrega a API do YouTube 
 const scriptYoutube = document.createElement('script');
 scriptYoutube.src = "https://www.youtube.com/iframe_api";
 const primeiroScript = document.getElementsByTagName('script')[0];
@@ -81,7 +81,7 @@ function mostrarSlide(numero) {
     slides.forEach(slide => slide.classList.remove('active'));
     slides[slideAtual - 1].classList.add('active');
 
-    // Gerenciar vídeo ao entrar/sair do slide 2 (que agora é o slide do vídeo)
+    // Gerenciar vídeo ao entrar/sair do slide 2
     if (videoPlayer && typeof videoPlayer.pauseVideo === 'function') {
         if (slideAtual === 2) {
             // Ao entrar no slide do vídeo
