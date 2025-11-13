@@ -7,13 +7,29 @@
 body {
     font-family: 'Segoe UI', 'Calibri', sans-serif;
     overflow: hidden;
-    background: #E3F2FD;
+    background: #4D6938;
 }
 
 .slide-container {
     width: 100vw;
     height: 100vh;
     position: relative;
+    background-color: #4D6938;
+}
+
+#slide1 {
+    background: #4D6938;
+    padding: 40px;
+}
+
+.slide-image {
+    max-width: 90%;
+    max-height: 85%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
 .slide {
@@ -27,7 +43,7 @@ body {
     left: 0;
     opacity: 0;
     transition: opacity 0.8s ease-in-out;
-    background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+    background: #4D6938;
 }
 
 .slide.active {
@@ -38,15 +54,15 @@ body {
 .slide h1 {
     font-size: 3.5rem;
     font-weight: 300;
-    color: #1565C0;
+    color: #FFFFFF;
     text-align: center;
     padding: 0 5%;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
     letter-spacing: 1px;
 }
 
 .slide-video {
-    background: #E3F2FD;
+    background: #4D6938;
 }
 
 .video-wrapper {
@@ -71,22 +87,22 @@ body {
 
 .btn {
     background: rgba(255, 255, 255, 0.9);
-    border: 2px solid #1565C0;
-    color: #1565C0;
+    border: 2px solid #FFFFFF;
+    color: #4D6938;
     padding: 12px 30px;
     font-size: 16px;
     border-radius: 25px;
     cursor: pointer;
-    font-weight: 500;
+    font-weight: 600;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
 }
 
 .btn:hover {
-    background: #1565C0;
-    color: white;
+    background: #FFFFFF;
+    color: #4D6938;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(21, 101, 192, 0.3);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.4);
 }
 
 .btn:disabled {
@@ -98,11 +114,11 @@ body {
     position: fixed;
     top: 20px;
     right: 30px;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.9);
     padding: 10px 20px;
     border-radius: 20px;
-    color: #1565C0;
-    font-weight: 500;
+    color: #4D6938;
+    font-weight: 600;
     backdrop-filter: blur(10px);
     z-index: 100;
 }
@@ -123,5 +139,10 @@ body {
     .btn {
         padding: 10px 20px;
         font-size: 14px;
+    }
+    
+    .slide-image {
+        max-width: 95%;
+        max-height: 80%;
     }
 }

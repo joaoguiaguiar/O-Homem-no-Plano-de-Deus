@@ -1,6 +1,6 @@
 //  Configurações iniciais 
 let slideAtual = 1;
-const totalDeSlides = 3;
+const totalDeSlides = 2; // Alterado de 3 para 2
 let videoPlayer;
 let verificadorTempo;
 let videoJaPosicionado = false;
@@ -81,9 +81,9 @@ function mostrarSlide(numero) {
     slides.forEach(slide => slide.classList.remove('active'));
     slides[slideAtual - 1].classList.add('active');
 
-    // Gerenciar vídeo ao entrar/sair do slide 3
+    // Gerenciar vídeo ao entrar/sair do slide 2 (que agora é o slide do vídeo)
     if (videoPlayer && typeof videoPlayer.pauseVideo === 'function') {
-        if (slideAtual === 3) {
+        if (slideAtual === 2) {
             // Ao entrar no slide do vídeo
             if (videoJaPosicionado && typeof videoPlayer.cueVideoById === 'function') {
                 videoPlayer.cueVideoById({
