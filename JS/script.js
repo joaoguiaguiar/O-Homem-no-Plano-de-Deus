@@ -1,6 +1,6 @@
 // Configurações iniciais 
 let slideAtual = 1;
-const totalDeSlides = 13;
+const totalDeSlides = 14;
 let videoPlayer;
 let verificadorTempo;
 let videoJaPosicionado = false;
