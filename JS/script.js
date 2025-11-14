@@ -1,13 +1,9 @@
 // Configurações iniciais 
 let slideAtual = 1;
-// TOTAL DE SLIDES AJUSTADO PARA 7
-const totalDeSlides = 7; 
+const totalDeSlides = 13;
 let videoPlayer;
 let verificadorTempo;
 let videoJaPosicionado = false;
-let animacaoDiasAtiva = false;
-
-// ... o resto do código permanece igual
 
 // Carrega a API do YouTube 
 const scriptYoutube = document.createElement('script');
@@ -37,7 +33,6 @@ function onYouTubeIframeAPIReady() {
 // Função executada quando o player estiver totalmente carregado
 function aoVideoFicarPronto(evento) {
     console.log('Player pronto');
-    // Pre-carrega o vídeo com o tempo de início
     videoPlayer.cueVideoById({
         videoId: 'X3n4xRHQBuw',
         startSeconds: 8.5
@@ -49,13 +44,11 @@ function aoVideoFicarPronto(evento) {
 function aoMudarEstadoDoVideo(evento) {
     console.log('Estado do vídeo:', evento.data);
     
-    // Inicia o verificador de tempo ao começar a tocar
     if (evento.data === YT.PlayerState.PLAYING) {
         clearInterval(verificadorTempo);
         verificadorTempo = setInterval(() => {
             if (videoPlayer && videoPlayer.getCurrentTime) {
                 const tempo = videoPlayer.getCurrentTime();
-                // Pausa o vídeo ao atingir 200 segundos (ajuste se necessário)
                 if (tempo >= 200) { 
                     videoPlayer.pauseVideo();
                     clearInterval(verificadorTempo);
@@ -64,53 +57,27 @@ function aoMudarEstadoDoVideo(evento) {
         }, 100);
     }
 
-    // Limpa o verificador se o vídeo pausar ou terminar
     if (evento.data === YT.PlayerState.PAUSED || evento.data === YT.PlayerState.ENDED) {
         clearInterval(verificadorTempo);
     }
 }
 
-// FUNÇÃO: Faz scroll automático para o último dia visível
-function fazerScrollParaDiaAtual() {
-    const diasVisiveis = document.querySelectorAll('.day-item.show');
-    if (diasVisiveis.length > 0) {
-        const ultimoDiaVisivel = diasVisiveis[diasVisiveis.length - 1];
-        ultimoDiaVisivel.scrollIntoView({ 
-            behavior: 'smooth', 
-            block: 'center' 
-        });
+// Função para ajustar para dispositivos móveis
+function ajustarParaDispositivo() {
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile) {
+        // Otimizações específicas para mobile
+        document.body.style.overflowX = 'hidden';
+        
+        // Garante que o vídeo não sobrecarregue em mobile
+        if (videoPlayer && slideAtual !== 2) {
+            videoPlayer.pauseVideo();
+        }
     }
 }
 
-// FUNÇÃO: Anima os 7 dias sequencialmente COM SCROLL
-function animarDiasDaCriacao() {
-    if (animacaoDiasAtiva) return;
-    animacaoDiasAtiva = true;
-
-    const diasItems = document.querySelectorAll('.day-item');
-    
-    // Esconde todos antes de começar
-    diasItems.forEach(item => item.classList.remove('show'));
-    
-    diasItems.forEach((item, index) => {
-        setTimeout(() => {
-            item.classList.add('show');
-            // Faz scroll automático após cada dia aparecer
-            setTimeout(() => {
-                fazerScrollParaDiaAtual();
-            }, 300);
-        }, index * 600); // 600ms de intervalo entre a aparição de cada dia
-    });
-}
-
-// FUNÇÃO: Reseta a animação dos dias
-function resetarAnimacaoDias() {
-    animacaoDiasAtiva = false;
-    const diasItems = document.querySelectorAll('.day-item');
-    diasItems.forEach(item => item.classList.remove('show'));
-}
-
-// --- Mostra o slide atual ---
+// Mostra o slide atual
 function mostrarSlide(numero) {
     const slides = document.querySelectorAll('.slide');
     const botaoAnterior = document.getElementById('prevBtn');
@@ -125,7 +92,7 @@ function mostrarSlide(numero) {
     slides.forEach(slide => slide.classList.remove('active'));
     slides[slideAtual - 1].classList.add('active');
 
-    // Scroll para o topo quando entrar no slide 3 (A Criação)
+    // Scroll para o topo quando entrar no slide 3
     if (slideAtual === 3) {
         setTimeout(() => {
             const creationContent = document.querySelector('.creation-content');
@@ -135,10 +102,12 @@ function mostrarSlide(numero) {
         }, 100);
     }
 
+    // Otimizações para mobile
+    ajustarParaDispositivo();
+
     // Gerenciar vídeo ao entrar/sair do slide 2
     if (videoPlayer && typeof videoPlayer.pauseVideo === 'function') {
         if (slideAtual === 2) {
-            // Posiciona e prepara o vídeo
             if (videoJaPosicionado && typeof videoPlayer.cueVideoById === 'function') {
                 videoPlayer.cueVideoById({
                     videoId: 'X3n4xRHQBuw',
@@ -146,20 +115,9 @@ function mostrarSlide(numero) {
                 });
             }
         } else {
-            // Pausa o vídeo e limpa o verificador em outros slides
             videoPlayer.pauseVideo();
             clearInterval(verificadorTempo);
         }
-    }
-
-    // Inicia animação dos dias quando entrar no slide 3
-    if (slideAtual === 3) {
-        setTimeout(() => {
-            animarDiasDaCriacao();
-        }, 300);
-    } else {
-        // Reseta a animação ao sair
-        resetarAnimacaoDias();
     }
 
     // Gerencia o estado dos botões de navegação
@@ -170,7 +128,7 @@ function mostrarSlide(numero) {
     contador.textContent = slideAtual;
 }
 
-// FUNÇÃO: Muda o slide na direção especificada (+1 ou -1)
+// Muda o slide na direção especificada (+1 ou -1)
 function mudarSlide(direcao) {
     slideAtual += direcao;
     mostrarSlide(slideAtual);
@@ -181,6 +139,12 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight') mudarSlide(1);
     if (e.key === 'ArrowLeft') mudarSlide(-1);
 });
+
+// Chame esta função quando a janela for redimensionada
+window.addEventListener('resize', ajustarParaDispositivo);
+
+// E também no carregamento inicial
+window.addEventListener('load', ajustarParaDispositivo);
 
 // Inicializa o slider
 mostrarSlide(slideAtual);

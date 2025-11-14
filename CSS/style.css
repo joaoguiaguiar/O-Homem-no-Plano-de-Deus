@@ -44,6 +44,8 @@ body {
     opacity: 0;
     transition: opacity 0.8s ease-in-out;
     background: #4D6938;
+    min-height: 100vh;
+    overflow-y: auto;
 }
 
 .slide.active {
@@ -59,6 +61,7 @@ body {
     padding: 0 5%;
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
     letter-spacing: 2px;
+    line-height: 1.3;
 }
 
 .slide-video {
@@ -75,13 +78,13 @@ body {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
-/* ===== SLIDE 3: CRIAÇÃO DO MUNDO - ESTILO DA IMAGEM ===== */
-creation-content {
+/* ===== SLIDE 3: CRIAÇÃO DO MUNDO ===== */
+.creation-content {
     width: 95%;
     max-width: 1400px;
     padding: 30px;
     overflow-y: auto;
-    max-height: 90vh;
+    max-height: 85vh;
 }
 
 .creation-title {
@@ -126,26 +129,6 @@ creation-content {
     border-radius: 15px;
     padding: 25px;
     transition: all 0.3s ease;
-    animation: slideIn 0.6s ease-out backwards;
-}
-
-.day-card:nth-child(1) { animation-delay: 0.1s; }
-.day-card:nth-child(2) { animation-delay: 0.2s; }
-.day-card:nth-child(3) { animation-delay: 0.3s; }
-.day-card:nth-child(4) { animation-delay: 0.4s; }
-.day-card:nth-child(5) { animation-delay: 0.5s; }
-.day-card:nth-child(6) { animation-delay: 0.6s; }
-.day-card:nth-child(7) { animation-delay: 0.7s; }
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
 }
 
 .day-card:hover {
@@ -183,8 +166,8 @@ creation-content {
     color: #FFD700;
 }
 
-/* ===== SLIDE 4: VERSÍCULO ===== */
-#slide4 .verse-content {
+/* ===== SLIDES DE VERSÍCULOS (4, 5) ===== */
+.verse-content {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -193,48 +176,7 @@ creation-content {
     padding: 40px;
 }
 
-#slide4 .verse-box {
-    max-width: 1100px;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(15px);
-    padding: 80px 100px;
-    border-radius: 20px;
-    border: 4px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
-    animation: verseAppear 1.5s ease-out;
-}
-
-#slide4 .verse-text {
-    font-size: 4rem;
-    font-weight: 300;
-    color: #FFFFFF;
-    line-height: 1.6;
-    margin-bottom: 40px;
-    text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.8);
-    font-style: italic;
-    animation: textGlow 3s ease-in-out infinite;
-}
-
-#slide4 .verse-reference {
-    font-size: 2.5rem;
-    color: #FFD700;
-    font-weight: 600;
-    letter-spacing: 3px;
-    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
-}
-
-/* ===== SLIDE 5: VERSÍCULO ===== */
-#slide5 .verse-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    padding: 40px;
-}
-
-#slide5 .verse-box {
+.verse-box {
     max-width: 1100px;
     text-align: center;
     background: rgba(0, 0, 0, 0.4);
@@ -260,7 +202,7 @@ creation-content {
     }
 }
 
-#slide5 .verse-text {
+.verse-text {
     font-size: 4rem;
     font-weight: 300;
     color: #FFFFFF;
@@ -281,7 +223,7 @@ creation-content {
     }
 }
 
-#slide5 .verse-reference {
+.verse-reference {
     font-size: 2.5rem;
     color: #FFD700;
     font-weight: 600;
@@ -290,7 +232,7 @@ creation-content {
 }
 
 /* ===== SLIDE 6: QUEM É DEUS? ===== */
-#slide6 .god-content {
+.god-content {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -299,7 +241,7 @@ creation-content {
     padding: 40px;
 }
 
-#slide6 .god-box {
+.god-box {
     max-width: 1100px;
     text-align: center;
     background: rgba(0, 0, 0, 0.4);
@@ -311,7 +253,7 @@ creation-content {
     animation: verseAppear 1.5s ease-out;
 }
 
-#slide6 .god-title {
+.god-title {
     font-size: 3.5rem;
     font-weight: 700;
     color: #FFD700;
@@ -319,11 +261,11 @@ creation-content {
     text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
 }
 
-#slide6 .god-verse {
+.god-verse {
     margin-bottom: 30px;
 }
 
-#slide6 .god-text {
+.god-text {
     font-size: 2.2rem;
     font-weight: 400;
     color: #FFFFFF;
@@ -333,14 +275,14 @@ creation-content {
     font-style: italic;
 }
 
-#slide6 .god-reference {
+.god-reference {
     font-size: 1.8rem;
     color: #FFD700;
     font-weight: 600;
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
 }
 
-#slide6 .catechism-box {
+.catechism-box {
     background: rgba(255, 215, 0, 0.1);
     border: 2px solid rgba(255, 215, 0, 0.3);
     border-radius: 15px;
@@ -348,26 +290,26 @@ creation-content {
     margin: 30px 0;
 }
 
-#slide6 .catechism-text {
+.catechism-text {
     font-size: 1.6rem;
     color: #D4E4BC;
     margin-bottom: 15px;
     font-style: italic;
 }
 
-#slide6 .catechism-content {
+.catechism-content {
     font-size: 1.8rem;
     color: #FFFFFF;
     font-weight: 600;
     line-height: 1.6;
 }
 
-#slide6 .final-verse {
+.final-verse {
     margin-top: 30px;
 }
 
 /* ===== SLIDE 7: POR QUE DEUS CRIOU O MUNDO? ===== */
-#slide7 .creation-purpose-content {
+.creation-purpose-content {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -376,7 +318,7 @@ creation-content {
     padding: 40px;
 }
 
-#slide7 .creation-purpose-box {
+.creation-purpose-box {
     max-width: 1100px;
     text-align: center;
     background: rgba(0, 0, 0, 0.4);
@@ -388,7 +330,7 @@ creation-content {
     animation: verseAppear 1.5s ease-out;
 }
 
-#slide7 .creation-purpose-title {
+.creation-purpose-title {
     font-size: 3.5rem;
     font-weight: 700;
     color: #FFD700;
@@ -396,11 +338,11 @@ creation-content {
     text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
 }
 
-#slide7 .purpose-verse {
+.purpose-verse {
     margin-bottom: 25px;
 }
 
-#slide7 .purpose-text {
+.purpose-text {
     font-size: 2rem;
     font-weight: 400;
     color: #FFFFFF;
@@ -410,14 +352,14 @@ creation-content {
     font-style: italic;
 }
 
-#slide7 .purpose-reference {
+.purpose-reference {
     font-size: 1.6rem;
     color: #FFD700;
     font-weight: 600;
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
 }
 
-#slide7 .purpose-explanation {
+.purpose-explanation {
     background: rgba(255, 255, 255, 0.1);
     border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: 15px;
@@ -425,15 +367,485 @@ creation-content {
     margin: 25px 0;
 }
 
-#slide7 .purpose-explanation p {
+.purpose-explanation p {
     font-size: 1.8rem;
     color: #FFFFFF;
     line-height: 1.6;
     font-weight: 500;
 }
 
-#slide7 .final-purpose-verse {
+.final-purpose-verse {
     margin-top: 25px;
+}
+
+/* ===== SLIDE 8: ESPÍRITO DIVINO ===== */
+.spirit-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+}
+
+.spirit-box {
+    max-width: 1000px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(15px);
+    padding: 40px 50px;
+    border-radius: 20px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+    animation: verseAppear 1.5s ease-out;
+}
+
+.spirit-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #FFD700;
+    margin-bottom: 30px;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+}
+
+.spirit-gifts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.gift-item {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 215, 0, 0.4);
+    border-radius: 15px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.gift-item:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 215, 0, 0.7);
+}
+
+.gift-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.gift-text {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.spirit-verse {
+    background: rgba(255, 215, 0, 0.1);
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.spirit-purpose {
+    font-size: 1.4rem;
+    color: #FFFFFF;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.spirit-reference {
+    font-size: 1.3rem;
+    color: #FFD700;
+    font-weight: 600;
+}
+
+/* ===== SLIDE 9: VONTADE DE DEUS ===== */
+.will-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+}
+
+.will-box {
+    max-width: 1000px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(15px);
+    padding: 40px 50px;
+    border-radius: 20px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+    animation: verseAppear 1.5s ease-out;
+}
+
+.will-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #FFD700;
+    margin-bottom: 30px;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+}
+
+.will-list {
+    margin-bottom: 30px;
+}
+
+.will-item {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin: 15px 0;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-left: 5px solid #FFD700;
+    border-radius: 10px;
+    text-align: left;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+    transition: all 0.3s ease;
+}
+
+.will-item:hover {
+    transform: translateX(10px);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.holiness-section {
+    background: rgba(255, 215, 0, 0.15);
+    border: 3px solid rgba(255, 215, 0, 0.4);
+    border-radius: 15px;
+    padding: 25px;
+    margin-top: 30px;
+}
+
+.holiness-text {
+    font-size: 1.6rem;
+    color: #FFFFFF;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.holiness-quote {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #FFD700;
+    font-style: italic;
+    margin-bottom: 10px;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+}
+
+.holiness-reference {
+    font-size: 1.4rem;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+/* ===== SLIDE 10: HOMEM FERE O PLANO ===== */
+.sin-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 40px;
+}
+
+.sin-box {
+    max-width: 1100px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(15px);
+    padding: 60px 80px;
+    border-radius: 20px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+    animation: verseAppear 1.5s ease-out;
+}
+
+.sin-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #FFD700;
+    margin-bottom: 50px;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+}
+
+.sin-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.sin-card {
+    background: rgba(255, 100, 100, 0.2);
+    border: 2px solid rgba(255, 100, 100, 0.4);
+    border-radius: 15px;
+    padding: 40px;
+    transition: all 0.3s ease;
+}
+
+.sin-card:hover {
+    transform: scale(1.05);
+    background: rgba(255, 100, 100, 0.3);
+    border-color: rgba(255, 100, 100, 0.6);
+}
+
+.sin-icon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.sin-name {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+/* ===== SLIDE 11: PLANO DO HOMEM ===== */
+.human-plan-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 40px;
+}
+
+.human-plan-box {
+    max-width: 1100px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(15px);
+    padding: 60px 80px;
+    border-radius: 20px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+    animation: verseAppear 1.5s ease-out;
+}
+
+.human-plan-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #FFD700;
+    margin-bottom: 50px;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+}
+
+.human-plan-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.plan-item {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 100, 100, 0.4);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+.plan-item:hover {
+    transform: translateX(10px);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 100, 100, 0.6);
+}
+
+.plan-icon {
+    font-size: 4rem;
+    flex-shrink: 0;
+}
+
+.plan-text {
+    flex: 1;
+}
+
+.plan-main {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #FFD700;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.plan-sub {
+    font-size: 1.6rem;
+    color: #FFFFFF;
+    line-height: 1.5;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* ===== SLIDE 12: VIDA E MORTE ===== */
+.death-life-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+}
+
+.death-life-box {
+    max-width: 900px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(15px);
+    padding: 40px 50px;
+    border-radius: 20px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+    animation: verseAppear 1.5s ease-out;
+}
+
+.life-section {
+    background: rgba(100, 255, 100, 0.2);
+    border: 3px solid rgba(100, 255, 100, 0.4);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 20px;
+}
+
+.death-section {
+    background: rgba(255, 100, 100, 0.2);
+    border: 3px solid rgba(255, 100, 100, 0.4);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.section-icon {
+    font-size: 3.5rem;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.section-text {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8);
+}
+
+.verse-section {
+    background: rgba(255, 215, 0, 0.15);
+    border: 3px solid rgba(255, 215, 0, 0.4);
+    border-radius: 15px;
+    padding: 25px;
+    margin-top: 30px;
+}
+
+.death-verse {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #FFD700;
+    font-style: italic;
+    margin-bottom: 15px;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+}
+
+.death-reference {
+    font-size: 1.6rem;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+/* ===== SLIDE 13: A MISERICÓRDIA (3 IMAGENS) ===== */
+.mercy-content {
+    width: 95%;
+    max-width: 1400px;
+    padding: 40px;
+    text-align: center;
+}
+
+.mercy-title {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #FFD700;
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+}
+
+.mercy-subtitle {
+    font-size: 2rem;
+    color: #D4E4BC;
+    margin-bottom: 60px;
+    font-style: italic;
+}
+
+.mercy-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.mercy-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 30px;
+    transition: all 0.4s ease;
+    animation: slideIn 0.6s ease-out backwards;
+}
+
+.mercy-card:nth-child(1) { animation-delay: 0.1s; }
+.mercy-card:nth-child(2) { animation-delay: 0.3s; }
+.mercy-card:nth-child(3) { animation-delay: 0.5s; }
+
+.mercy-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 215, 0, 0.6);
+}
+
+.mercy-image-box {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mercy-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.mercy-card:hover .mercy-image {
+    transform: scale(1.1);
+}
+
+.mercy-name {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #FFD700;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.mercy-desc {
+    font-size: 1.6rem;
+    color: #FFFFFF;
+    line-height: 1.5;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
 }
 
 /* ===== CONTROLES ===== */
@@ -486,10 +898,39 @@ creation-content {
     z-index: 100;
 }
 
-/* ===== RESPONSIVO ===== */
+/* ===== CORREÇÕES DE RESPONSIVIDADE ===== */
+@media (max-width: 1024px) {
+    .mercy-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .mercy-image-box {
+        height: 250px;
+    }
+    
+    .slide h1 {
+        font-size: 3rem;
+    }
+    
+    .creation-title, .mercy-title {
+        font-size: 2.8rem;
+    }
+    
+    .verse-text {
+        font-size: 2.8rem;
+    }
+    
+    .god-title, .creation-purpose-title, .spirit-title,
+    .will-title, .sin-title, .human-plan-title {
+        font-size: 2.8rem;
+    }
+}
+
 @media (max-width: 768px) {
     .slide h1 {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+        padding: 0 20px;
     }
 
     .video-wrapper {
@@ -510,81 +951,126 @@ creation-content {
         max-height: 80%;
     }
 
-    /* Slide 3 responsivo */
     .creation-content {
         padding: 30px 20px;
     }
     
-    .creation-title {
-        font-size: 2.5rem;
+    .creation-title, .mercy-title {
+        font-size: 2.2rem;
     }
     
-    .creation-subtitle {
-        font-size: 1.4rem;
-    }
-    
-    .day-item {
-        padding: 20px;
-        margin-bottom: 20px;
+    .creation-subtitle, .mercy-subtitle {
+        font-size: 1.2rem;
     }
     
     .day-number {
         font-size: 1.8rem;
     }
     
-    .day-item p {
-        font-size: 1.2rem;
+    .day-card p {
+        font-size: 1.1rem;
     }
 
-    /* Slide 4 e 5 responsivo */
-    #slide4 .verse-box,
-    #slide5 .verse-box {
-        padding: 50px 30px;
-        margin: 20px;
-    }
-    
-    #slide4 .verse-text,
-    #slide5 .verse-text {
-        font-size: 2.2rem;
-    }
-    
-    #slide4 .verse-reference,
-    #slide5 .verse-reference {
-        font-size: 1.5rem;
-    }
-
-    /* Slide 6 e 7 responsivo */
-    #slide6 .god-box,
-    #slide7 .creation-purpose-box {
+    .verse-box, .god-box, .creation-purpose-box,
+    .spirit-box, .will-box, .sin-box, .human-plan-box,
+    .death-life-box {
         padding: 40px 30px;
         margin: 20px;
     }
     
-    #slide6 .god-title,
-    #slide7 .creation-purpose-title {
-        font-size: 2.5rem;
+    .verse-text {
+        font-size: 2rem;
+        line-height: 1.4;
     }
     
-    #slide6 .god-text,
-    #slide7 .purpose-text {
+    .verse-reference {
+        font-size: 1.3rem;
+    }
+
+    .god-title, .creation-purpose-title, .spirit-title,
+    .will-title, .sin-title, .human-plan-title {
+        font-size: 2.2rem;
+    }
+    
+    .god-text, .purpose-text {
         font-size: 1.6rem;
     }
     
-    #slide6 .catechism-text {
-        font-size: 1.3rem;
-    }
-    
-    #slide6 .catechism-content {
+    .catechism-content {
         font-size: 1.4rem;
     }
     
-    #slide7 .purpose-explanation p {
+    .spirit-gifts, .sin-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .gift-text {
+        font-size: 1.6rem;
+    }
+    
+    .will-item {
+        font-size: 1.8rem;
+        padding: 15px;
+    }
+    
+    .holiness-quote {
+        font-size: 1.8rem;
+    }
+    
+    .sin-name {
+        font-size: 1.8rem;
+    }
+    
+    .plan-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .plan-main {
+        font-size: 1.8rem;
+    }
+    
+    .section-text {
+        font-size: 1.8rem;
+    }
+    
+    .death-verse {
+        font-size: 1.8rem;
+    }
+    
+    .mercy-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Correções específicas para slides 8, 9 e 12 em mobile */
+    .spirit-box, .will-box, .death-life-box {
+        padding: 30px 20px;
+    }
+    
+    .spirit-title, .will-title {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+    
+    .gift-text {
         font-size: 1.4rem;
     }
     
-    #slide6 .god-reference,
-    #slide7 .purpose-reference {
-        font-size: 1.3rem;
+    .will-item {
+        font-size: 1.6rem;
+        padding: 12px;
+    }
+    
+    .holiness-quote {
+        font-size: 1.6rem;
+    }
+    
+    .section-text {
+        font-size: 1.6rem;
+    }
+    
+    .death-verse {
+        font-size: 1.6rem;
     }
 }
 
@@ -593,54 +1079,163 @@ creation-content {
         padding: 20px 15px;
     }
     
-    .creation-title {
-        font-size: 2rem;
-    }
-    
-    .day-item {
-        padding: 15px;
-    }
-    
-    .day-number {
-        font-size: 1.6rem;
-    }
-    
-    .day-item p {
-        font-size: 1.1rem;
-    }
-
-    #slide4 .verse-box,
-    #slide5 .verse-box {
-        padding: 40px 20px;
-    }
-    
-    #slide4 .verse-text,
-    #slide5 .verse-text {
+    .creation-title, .mercy-title {
         font-size: 1.8rem;
     }
     
-    #slide4 .verse-reference,
-    #slide5 .verse-reference {
+    .days-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .day-card {
+        padding: 20px;
+    }
+    
+    .day-number {
+        font-size: 1.4rem;
+    }
+    
+    .day-card p {
+        font-size: 1rem;
+    }
+
+    .verse-box, .god-box, .creation-purpose-box,
+    .spirit-box, .will-box, .sin-box, .human-plan-box,
+    .death-life-box {
+        padding: 30px 20px;
+        margin: 10px;
+    }
+    
+    .verse-text {
+        font-size: 1.6rem;
+    }
+    
+    .verse-reference {
         font-size: 1.3rem;
     }
 
-    #slide6 .god-box,
-    #slide7 .creation-purpose-box {
-        padding: 30px 20px;
+    .god-title, .creation-purpose-title, .spirit-title,
+    .will-title, .sin-title, .human-plan-title {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
     }
     
-    #slide6 .god-title,
-    #slide7 .creation-purpose-title {
-        font-size: 2rem;
+    .god-text, .purpose-text {
+        font-size: 1.4rem;
     }
     
-    #slide6 .god-text,
-    #slide7 .purpose-text {
+    .catechism-content {
+        font-size: 1.2rem;
+    }
+    
+    .spirit-gifts, .sin-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .gift-item, .sin-card {
+        padding: 20px;
+    }
+    
+    .gift-text {
+        font-size: 1.4rem;
+    }
+    
+    .will-item {
+        font-size: 1.4rem;
+    }
+    
+    .holiness-quote {
+        font-size: 1.4rem;
+    }
+    
+    .plan-item {
+        padding: 20px;
+    }
+    
+    .plan-main {
+        font-size: 1.4rem;
+    }
+    
+    .plan-sub {
+        font-size: 1.1rem;
+    }
+    
+    .section-text {
+        font-size: 1.4rem;
+    }
+    
+    .death-verse {
+        font-size: 1.4rem;
+    }
+    
+    .mercy-grid {
+        gap: 20px;
+    }
+    
+    .mercy-card {
+        padding: 20px;
+    }
+    
+    .mercy-image-box {
+        height: 200px;
+    }
+    
+    .slide-counter {
+        font-size: 1.2rem;
+        padding: 10px 20px;
+    }
+    
+    .controls {
+        bottom: 15px;
+    }
+    
+    .btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+
+    /* Correções extras para slides 8, 9 e 12 em mobile pequeno */
+    .spirit-box, .will-box, .death-life-box {
+        padding: 25px 15px;
+    }
+    
+    .spirit-title, .will-title {
+        font-size: 1.6rem;
+    }
+    
+    .gift-icon {
+        font-size: 2.5rem;
+    }
+    
+    .gift-text {
+        font-size: 1.2rem;
+    }
+    
+    .will-item {
+        font-size: 1.2rem;
+        margin: 10px 0;
+        padding: 10px;
+    }
+    
+    .holiness-section {
+        padding: 20px;
+    }
+    
+    .holiness-quote {
         font-size: 1.3rem;
     }
     
-    #slide6 .catechism-box,
-    #slide7 .purpose-explanation {
-        padding: 15px;
+    .section-icon {
+        font-size: 2.5rem;
+    }
+    
+    .section-text {
+        font-size: 1.3rem;
+    }
+    
+    .death-verse {
+        font-size: 1.3rem;
     }
 }
